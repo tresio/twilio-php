@@ -118,9 +118,10 @@ abstract class TwiML
       if (\is_bool($value)) {
         $value = ($value === true) ? 'true' : 'false';
       }
-      if (!is_array($value)) {
-        $element->setAttribute($name, $value);
+      if (is_array($value)) {
+        $value = implode(' ', $value);
       }
+      $element->setAttribute($name, $value);
     }
 
     foreach ($twiml->children as $child) {
